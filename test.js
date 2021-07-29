@@ -36,4 +36,21 @@ describe("Testing search bar pokemon", function () {
     assert.strictEqual(resultSearch, "No se encontro el pokemon que buscaba");
     await webDriver.quit();
   });
+  it("Enviar input vacio", async () => {
+    let webDriver = new Builder().forBrowser("chrome").build();
+    webDriver.manage().window().maximize();
+    await webDriver.get("https://pokemon-challenge-app.netlify.app/");
+    await webDriver.wait(until.elementLocated(By.css(".container")), 3000);
+    await webDriver
+      .findElement(
+        By.css("#root > main > section.containerHero > form > label > input")
+      )
+      .sendKeys("", Key.RETURN);
+    const popupError = await webDriver
+      .findElement(By.css("#error > div.Toastify__toast-body"))
+      .getText();
+    console.log(popupError);
+    assert.strictEqual(popupError, "");
+    await webDriver.quit();
+  });
 });
