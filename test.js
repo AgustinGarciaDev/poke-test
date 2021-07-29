@@ -3,16 +3,18 @@ const assert = require("assert");
 
 describe("Testing search bar pokemon", function () {
   it("Encontrar pokemon", async () => {
+    this.timeout(60000);
     let webDriver = new Builder().forBrowser("chrome").build();
     webDriver.manage().window().maximize();
     await webDriver.get("https://pokemon-challenge-app.netlify.app/");
+    await webDriver.wait(until.elementLocated(By.css(".container")), 3000);
     await webDriver
       .findElement(
         By.css("#root > main > section.containerHero > form > label > input")
       )
-      .sendKeys("pi", Key.RETURN);
+      .sendKeys("p", Key.RETURN);
     const resultSearch = await webDriver
-      .findElement(By.css("#root > main > section:nth-child(2) > h3"))
+      .findElement(By.css(".textSearch"))
       .getText();
     assert.strictEqual(resultSearch, "Resultado de la busqueda");
     await webDriver.quit();
@@ -22,10 +24,7 @@ describe("Testing search bar pokemon", function () {
     let webDriver = new Builder().forBrowser("chrome").build();
     webDriver.manage().window().maximize();
     await webDriver.get("https://pokemon-challenge-app.netlify.app/");
-    /*    await webDriver.wait(
-      until.elementLocated(By.css("#animation > svg")),
-      5000
-    ); */
+    await webDriver.wait(until.elementLocated(By.css(".container")), 3000);
     await webDriver
       .findElement(
         By.css("#root > main > section.containerHero > form > label > input")
