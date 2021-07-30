@@ -1,0 +1,138 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2021-07-30T00:41:50.307Z",
+    "end": "2021-07-30T00:42:08.703Z",
+    "duration": 18396,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "2df7054b-9e22-467e-8596-9a9e921e99c1",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "4b6eb45b-1007-4635-92ea-719f250b3b9b",
+          "title": "Testing search bar pokemon",
+          "fullFile": "C:\\Users\\agustin\\Desktop\\poke-test\\test.js",
+          "file": "\\test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Encontrar pokemon",
+              "fullTitle": "Testing search bar pokemon Encontrar pokemon",
+              "timedOut": false,
+              "duration": 7582,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let webDriver = new Builder().forBrowser(\"chrome\").build();\nwebDriver.manage().window().maximize();\nawait webDriver.get(\"https://pokemon-challenge-app.netlify.app/\");\nawait webDriver.sleep(2000);\nawait webDriver\n  .findElement(\n    By.css(\"#root > main > section.containerHero > form > label > input\")\n  )\n  .sendKeys(\"p\", Key.RETURN);\nawait webDriver.sleep(2000);\nconst resultSearch = await webDriver\n  .findElement(By.css(\"#root > main > section:nth-child(2) > h3\"))\n  .getText();\nawait webDriver.sleep(2000);\nassert.strictEqual(resultSearch, \"Resultado de la busqueda\");\nawait webDriver.quit();",
+              "err": {},
+              "uuid": "f6e10c57-011a-44cc-9ad5-616c8fbf0605",
+              "parentUUID": "4b6eb45b-1007-4635-92ea-719f250b3b9b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "No encontrar un pokemon",
+              "fullTitle": "Testing search bar pokemon No encontrar un pokemon",
+              "timedOut": false,
+              "duration": 5550,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let webDriver = new Builder().forBrowser(\"chrome\").build();\nwebDriver.manage().window().maximize();\nawait webDriver.get(\"https://pokemon-challenge-app.netlify.app/\");\nawait webDriver.wait(until.elementLocated(By.css(\".container\")), 3000);\nawait webDriver.sleep(2000);\nawait webDriver\n  .findElement(\n    By.css(\"#root > main > section.containerHero > form > label > input\")\n  )\n  .sendKeys(\"pikochu\", Key.RETURN);\nawait webDriver.sleep(2000);\nconst resultSearch = await webDriver\n  .findElement(By.css(\"#root > main > section:nth-child(2) > div > h3\"))\n  .getText();\nassert.strictEqual(resultSearch, \"No se encontro el pokemon que buscaba\");\nawait webDriver.quit();",
+              "err": {},
+              "uuid": "2472b631-d71f-43a2-932b-88bedbc3db6d",
+              "parentUUID": "4b6eb45b-1007-4635-92ea-719f250b3b9b",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Enviar input vacio",
+              "fullTitle": "Testing search bar pokemon Enviar input vacio",
+              "timedOut": false,
+              "duration": 5257,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let webDriver = new Builder().forBrowser(\"chrome\").build();\nwebDriver.manage().window().maximize();\nawait webDriver.get(\"https://pokemon-challenge-app.netlify.app/\");\nawait webDriver.sleep(2000);\nawait webDriver.wait(until.elementLocated(By.css(\".container\")), 3000);\nawait webDriver\n  .findElement(\n    By.css(\"#root > main > section.containerHero > form > label > input\")\n  )\n  .sendKeys(\"\", Key.RETURN);\nawait webDriver.sleep(2000);\nconst popupError = await webDriver\n  .findElement(By.css(\"#error > div.Toastify__toast-body\"))\n  .getText();\nconsole.log(popupError);\nassert.strictEqual(popupError, \"Debe ingresar el nombre de un pokemon\");\nawait webDriver.quit();",
+              "err": {},
+              "uuid": "2b8703a8-c2ff-4f98-bece-ac761cedf1ab",
+              "parentUUID": "4b6eb45b-1007-4635-92ea-719f250b3b9b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "f6e10c57-011a-44cc-9ad5-616c8fbf0605",
+            "2472b631-d71f-43a2-932b-88bedbc3db6d",
+            "2b8703a8-c2ff-4f98-bece-ac761cedf1ab"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 18389,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 40000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "9.0.3"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.2"
+    },
+    "marge": {
+      "options": null,
+      "version": "5.2.0"
+    }
+  }
+}
