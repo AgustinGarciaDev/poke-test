@@ -18,13 +18,14 @@ describe("Testing search bar pokemon", function () {
       .findElement(By.css("#root > main > section:nth-child(2) > h3"))
       .getText();
     await webDriver.sleep(2000);
-    assert.strictEqual(resultSearch, "Resultado de la busqueda");
+    assert.strictEqual(resultSearch, "Resultado de la búsqueda");
     await webDriver.quit();
   });
-  /* ------------------ */
   it("No encontrar un pokemon", async () => {
     let webDriver = new Builder().forBrowser("chrome").build();
+    await webDriver.sleep(2000);
     webDriver.manage().window().maximize();
+    await webDriver.sleep(2000);
     await webDriver.get("https://pokemon-challenge-app.netlify.app/");
     await webDriver.wait(until.elementLocated(By.css(".container")), 3000);
     await webDriver.sleep(2000);
@@ -57,6 +58,7 @@ describe("Testing search bar pokemon", function () {
       .getText();
     console.log(popupError);
     assert.strictEqual(popupError, "Debe ingresar el nombre de un pokemon");
+    await webDriver.sleep(2000);
     await webDriver.quit();
   });
 });
